@@ -1,0 +1,88 @@
+﻿@page
+@model SacramentMeetingPlanner.Pages.MeetingPlanner.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SacramentMeeting</h4>
+    <hr />
+
+    <div class="card  mb-3 minmax">
+        <div class="card-header"><strong>Ward Name: </strong>@Html.DisplayNameFor(model => model.SacramentMeeting.wardName)</div>
+        <div class="card-body">
+            <table class="table table.default">
+                <tbody>
+                    <tr>
+                        <th scope="row">Conductor</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.conductor)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.date)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Opening Prayer</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.openingPrayer)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Opening Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.openingHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sacrament Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.sacramentHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Rest Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.restHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Special Musical Number</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.specialMusicalNumber)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Closing Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.closingHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Closing Prayer</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.closingPrayer)
+                        </td>
+                    </tr>                    
+
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+    <form method="post">
+        <input type="hidden" asp-for="SacramentMeeting.sacramentMeetingId" />
+        <a asp-page="./Index" class="btn btn-primary">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+
+</div>
+

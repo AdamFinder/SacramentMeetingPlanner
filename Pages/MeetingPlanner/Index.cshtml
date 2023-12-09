@@ -1,0 +1,68 @@
+﻿@page
+@model SacramentMeetingPlanner.Pages.MeetingPlanner.IndexModel
+
+@{
+    ViewData["Title"] = "Sacrament Meetings";
+}
+
+<h1>Sacrament Meetings</h1>
+
+<p class="d-flex justify-content-center">
+    <a asp-page="Create" class="btn btn-success d-flex justify-content-center w-25">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting[0].date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting[0].wardName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting[0].conductor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting[0].openingPrayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting[0].closingPrayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting[0].speakers)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SacramentMeeting) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.wardName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.conductor)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.openingPrayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.closingPrayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.speakerNames)
+            </td>
+            <td nowrap>
+                <a class='btn btn-primary bd-highlight' asp-page="./Edit" asp-route-id="@item.sacramentMeetingId">Edit</a>
+                <a class="btn btn-warning my-2 bd-highlight" asp-page="./Details" asp-route-id="@item.sacramentMeetingId">Details</a>
+                <a class='btn btn-danger bd-highlight' asp-page="./Delete" asp-route-id="@item.sacramentMeetingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

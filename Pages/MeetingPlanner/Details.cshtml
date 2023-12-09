@@ -1,0 +1,133 @@
+﻿@page
+@model SacramentMeetingPlanner.Pages.MeetingPlanner.DetailsModel
+
+@{
+    ViewData["Title"] = "Sacrament Meeting Program";
+}
+<body>
+    <h1>Details</h1>
+
+    <div align="center">
+        <a class='btn btn-success ms-5 justify-content-center w-25 align=right' onclick="printDiv('print-content')">Print</a>
+    </div>
+
+
+    <div>
+        <h4>Sacrament Meeting</h4>
+        <hr />
+
+        <div  id='print-content' class="card  mb-3 minmax">
+            <div class="card-header"><strong>Ward Name: </strong>@Html.DisplayNameFor(model => model.SacramentMeeting.wardName)</div>
+            <div class="card-body">
+                <table class="table table.default">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Conductor</th>
+                            <td>
+                                @Html.DisplayFor(modelItem => modelItem.SacramentMeeting.conductor)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Date</th>
+                            <td>
+                                @Html.DisplayFor(model => model.SacramentMeeting.date)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Opening Prayer</th>
+                            <td>
+                                @Html.DisplayFor(model => model.SacramentMeeting.openingPrayer)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Opening Hymn</th>
+                            <td>
+                                @Html.DisplayFor(model => model.SacramentMeeting.openingHymn.display)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Sacrament Hymn</th>
+                            <td>
+                                @Html.DisplayFor(model => model.SacramentMeeting.sacramentHymn.display)
+                            </td>
+                        </tr>
+                        <tr>
+                            @if (Model.SacramentMeeting.restHymnId != 1)
+                            {  
+                                <th scope="row">Rest Hymn</th>
+                                <td>
+                                    @Html.DisplayFor(model => model.SacramentMeeting.restHymn.display)
+                                </td>
+                            } 
+                        </tr>
+                        <tr>
+                            @if (Model.SacramentMeeting.specialMusicalNumber != null)
+                            {
+                                <th scope="row">Special Musical Number</th>
+                                <td>
+                                    @Html.DisplayFor(model => model.SacramentMeeting.specialMusicalNumber)
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <th scope="row">Closing Hymn</th>
+                            <td>
+                                @Html.DisplayFor(model => model.SacramentMeeting.closingHymn.display)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Closing Prayer</th>
+                            <td>
+                                @Html.DisplayFor(model => model.SacramentMeeting.closingPrayer)
+                            </td>
+                        </tr>                    
+                <table class="table table.default">
+                    <thead>
+                        <tr>
+                            <th>
+                                Speaker Name
+                            </th>
+                            <th>
+                                Speaker Topic
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SacramentMeeting.speakers)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.topic)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            </div>
+                    <a class='btn btn-primary' asp-page="./Index">Back to List</a>
+                    <a class='btn btn-warning' asp-page="./Edit" asp-route-id="@Model.SacramentMeeting?.sacramentMeetingId">Edit Program</a>
+                    <a class="btn btn-warning"
+                    asp-page="../Speakers/Index"
+                    asp-route-sacramentMeetingId="@Model.SacramentMeeting?.sacramentMeetingId">
+                        Edit Speakers
+                    </a>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
